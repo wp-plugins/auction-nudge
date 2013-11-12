@@ -13,6 +13,23 @@ This plugin enables you to embed your live eBay information on your WordPress si
 
 This plugin enables you to embed your live eBay information on your WordPress site using <a href="http://www.auctionnudge.com/">Auction Nudge</a>. Auction Nudge is a set of free widgets to integrate eBay into your own website. If you sell on eBay you can include Your eBay Listings, Your eBay Profile and Your eBay Feedback on your site by installing one line of code.
 
+Quick installation instructions:
+
+1. Once the plugin is installed, paste your Auction Nudge code snippet obtained from http://www.auctionnudge.com into the Auction Nudge settings tab in the admin area.
+2. Add the required tag as shown below into the post or page content.
+3. Update or publish the page and Auction Nudge will now display on your site!
+
+Tags (to be added to a page/post through the editor) :
+
+`/* To display Your eBay Listings */
+[an_items]
+
+/* To display Your eBay Profile */
+[an_profile]
+
+/* To display Your eBay Feedback */
+[an_feedback]`
+
 == Installation ==
 
 Quick instructions:
@@ -41,6 +58,17 @@ Detailed instructions:
 5. Click 'Save Settings' at the bottom of the page.
 6. Go to edit a page or post and using the editor insert the appropriate tag (`[an_items]`, `[an_profile]`, `[an_feedback]`) where you would like Auction Nudge to appear.
 7. Update or publish the page and Auction Nudge will now display on your site!
+
+As well as placing the plugin tags within the page or post content you can also call the plugin directly from your theme files using the following functions:
+
+`/* To display Your eBay Listings */
+<?php an_items(); ?>
+
+/* To display Your eBay Profile */
+<?php an_profile(); ?>
+
+/* To display Your eBay Feedback */
+<?php an_feedback(); ?>`
 
 == Frequently Asked Questions ==
 
