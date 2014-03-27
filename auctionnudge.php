@@ -2,7 +2,7 @@
 /*
 Plugin Name: Auction Nudge
 Plugin URI: http://www.auctionnudge.com/wordpress-plugin
-Description: This plugin enables you to embed your live eBay information on your WordPress site using Auction Nudge.
+Description: This plugin enables you to embed your live eBay information on your WordPress site using Auction Nudge. An options box will be added to the edit page/post screen below the content editor. <a href="options-general.php?page=an_options_page">Settings page</a>.
 Version: 2.0
 Author: Joseph Hawes
 Author URI: http://www.josephhawes.co.uk/
