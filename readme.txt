@@ -1,9 +1,9 @@
 === Auction Nudge ===
 Contributors: morehawes
-Tags: Auction Nudge, eBay, widget, integration, listings, items, profile, feedback
+Tags: Auction Nudge, eBay, widget, embed, integration, listings, items, profile, feedback, free
 Requires at least: 2.7
-Tested up to: 3.7.1
-Stable tag: 1.0
+Tested up to: 3.8.1
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,51 +15,69 @@ This plugin enables you to embed your live eBay information on your WordPress si
 
 Quick installation instructions:
 
-1. Once the plugin is installed, paste your Auction Nudge code snippet obtained from http://www.auctionnudge.com into the Auction Nudge settings tab in the admin area.
-2. Add the required tag as shown below into the post or page content.
+1. Once the plugin is installed, specify the desired options in the Auction Nudge box which appears on edit page/post admin pages.
+2. You can then specify where the content is output using the Auction Nudge `[auction-nudge]` shortcode.
 3. Update or publish the page and Auction Nudge will now display on your site!
 
-Tags (to be added to a page/post through the editor) :
+Shortcodes (to be added to a page/post through the content editor) :
 
-`/* To display Your eBay Listings */
-[an_items]
+`<!-- To display Your eBay Listings -->
+[auction-nudge tool="listings"]
 
-/* To display Your eBay Profile */
-[an_profile]
+<!-- To display Your eBay Profile -->
+[auction-nudge tool="profile"]
 
-/* To display Your eBay Feedback */
-[an_feedback]`
+<!-- To display Your eBay Feedback -->
+[auction-nudge tool="feedback"]`
+
+The following options are available for the Your eBay Listings tool:
+
+= Feed options =
+
+* Enter your eBay username
+* eBay user ID
+* eBay site
+
+= Display options =
+
+* Customise your feed
+* Theme
+* Number of items to show
+* Number of items to scroll
+* Item width
+* Auto scroll
+* Grid columns
+* Grid width
+* Show eBay Logo?
+
+= Advanced options =
+
+* Sort order
+* Filter by keyword
+* Filter by category ID
 
 == Installation ==
 
-Quick instructions:
+Quick installation instructions:
 
-1. Once the plugin is installed, paste your Auction Nudge code snippet obtained from http://www.auctionnudge.com into the Auction Nudge settings tab in the admin area.
-2. Add the required tag as shown below into the post or page content.
+1. Once the plugin is installed, specify the desired options in the Auction Nudge box which appears on edit page/post admin pages.
+2. You can then specify where the content is output using the Auction Nudge '[auction-nudge]' shortcode.
 3. Update or publish the page and Auction Nudge will now display on your site!
 
-Tags (to be added to a page/post through the editor) :
+Shortcodes (to be added to a page/post through the content editor) :
 
-`/* To display Your eBay Listings */
-[an_items]
+`<!-- To display Your eBay Listings -->
+[auction-nudge tool="listings"]
 
-/* To display Your eBay Profile */
-[an_profile]
+<!-- To display Your eBay Profile -->
+[auction-nudge tool="profile"]
 
-/* To display Your eBay Feedback */
-[an_feedback]`
+<!-- To display Your eBay Feedback -->
+[auction-nudge tool="feedback"]`
 
-Detailed instructions:
+As well as adding Auction Nudge content to your pages/posts using the `[auction-nudge]` shortcode you can also call the plugin directly from your theme files.
 
-1. To start, generate your Auction Nudge code snippet through the Auction Nudge website. For example to display your Your eBay Listings, you would go to the tool page (http://www.auctionnudge.com/your-ebay-items) and enter your settings (i.e. your eBay username and eBay site).
-2. Copy the code snippet, displayed under "Copy the code snippet onto your site".
-3. Go to the Auction Nudge settings tab in the WordPress admin area.
-4. Paste in the code snippet into the appropriate box. For example under Your eBay Listings where it states 'Insert code snippet'.
-5. Click 'Save Settings' at the bottom of the page.
-6. Go to edit a page or post and using the editor insert the appropriate tag (`[an_items]`, `[an_profile]`, `[an_feedback]`) where you would like Auction Nudge to appear.
-7. Update or publish the page and Auction Nudge will now display on your site!
-
-As well as placing the plugin tags within the page or post content you can also call the plugin directly from your theme files using the following functions:
+To use this feature, generate your code snippets from the <a target="_blank" href="http://www.auctionnudge.com">Auction Nudge website</a> and paste them in to the appropriate boxes in the <em>Settings &gt; Auction Nudge &gt; Within Your Theme</em> page. You can then use the following functions to add Auction Nudge within your theme files:
 
 `/* To display Your eBay Listings */
 <?php an_items(); ?>
@@ -72,9 +90,30 @@ As well as placing the plugin tags within the page or post content you can also 
 
 == Frequently Asked Questions ==
 
+Refer to the full Auction Nudge <a target="_blank" href="http://www.auctionnudge.com/help">help/FAQ page</a> for much more help.
+
+= How do I add Auction Nudge to my pages / posts? =
+
+Once the plugin has been enabled, an Auction Nudge box will appear on your edit page/post admin pages underneath the content editor. This box enables you to specify the desired options for the Your eBay Listings, Your eBay Profile and Your eBay Feedback tools.
+
+Once you have set the desired options, you can add the Auction Nudge `[auction-nudge]` shortcode to your page/post to specify where the content is displayed.
+
+Each Auction Nudge tool has it's own shortcode format:
+
+`<!-- To display Your eBay Listings -->
+[auction-nudge tool="listings"]
+
+<!-- To display Your eBay Profile -->
+[auction-nudge tool="profile"]
+
+<!-- To display Your eBay Feedback -->
+[auction-nudge tool="feedback"]`
+
 = How do I use the plugin from within theme files? =
 
-As well as placing the plugin tags within the page or post content you can also call the plugin directly from your theme files using the following functions:
+As well as adding Auction Nudge content to your pages/posts using the `[auction-nudge]` shortcode you can also call the plugin directly from your theme files.
+
+To use this feature, generate your code snippets from the <a target="_blank" href="http://www.auctionnudge.com">Auction Nudge website</a> and paste them in to the appropriate boxes in the <em>Settings &gt; Auction Nudge &gt; Within Your Theme</em> page. You can then use the following functions to add Auction Nudge within your theme files:
 
 `/* To display Your eBay Listings */
 <?php an_items(); ?>
@@ -90,7 +129,7 @@ As well as placing the plugin tags within the page or post content you can also 
 
 As well as choosing from different themes when you generate your Auction Nudge code you can also change the appearance using simple CSS rules. Auction Nudge will automatically use the default CSS rules for your web page, for example the default font and link colours so it integrates nicely with your page.
 
-You can change the CSS rules for Auction Nudge by adding them to the Auction Nudge CSS Rules section of the plugin options page. See the Auction Nudge <a href="http://www.auctionnudge.com/help">Help page</a> for more information and examples.
+You can change the CSS rules for Auction Nudge by adding them to the Auction Nudge CSS Rules section of the plugin options page. See the Auction Nudge <a href="http://www.auctionnudge.com/help#faq-css">Help page</a> for more information and examples.
 
 As a quick example, to make all of the product titles bold you would add this rule to your style sheet :
 
@@ -122,6 +161,11 @@ Lots more help can be found at the Auction Nudge <a href="http://www.auctionnudg
 
 
 == Changelog ==
+
+= 2.0 =
+* Plugin completely rewritten
+* Your eBay Listing, Your eBay Profile and Your eBay Feedback tools can now be added through the page/post edit page
+* Allows for feeds to be created on a page-by-page basis, useful if you require multiple item feeds
 
 = 1.0 =
 * Minor updates
