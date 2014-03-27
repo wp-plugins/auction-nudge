@@ -156,9 +156,11 @@ Lots more help can be found at the Auction Nudge <a href="http://www.auctionnudg
 == Screenshots ==
 
 1. Once installed on your site, Auction Nudge will display your active eBay information and will update automatically.
-2. Inserting Auction Nudge on your page is as simple as including a tag on your page e.g. `[an_items]`
-3. To get up and running visit the <a href="http://www.auctionnudge.com">Auction Nudge</a> site to obtain your code snippet and paste it in to the plugin options page.
-
+2. Options for the Your eBay Listings tool
+3. Options for the Your eBay Profile tool
+4. Options for the Your eBay Feedback tool
+5. The General settings page
+6. The Within Your Theme settings page
 
 == Changelog ==
 
