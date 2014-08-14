@@ -2,7 +2,7 @@
 Contributors: morehawes
 Tags: Auction Nudge, eBay, widget, embed, integration, listings, items, profile, feedback, free
 Requires at least: 2.7
-Tested up to: 3.8.1
+Tested up to: 3.9.2
 Stable tag: 2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
