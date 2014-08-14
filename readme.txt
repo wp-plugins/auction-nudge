@@ -3,7 +3,7 @@ Contributors: morehawes
 Tags: Auction Nudge, eBay, widget, embed, integration, listings, items, profile, feedback, free
 Requires at least: 2.7
 Tested up to: 3.8.1
-Stable tag: 2.0
+Stable tag: 2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -161,6 +161,9 @@ Lots more help can be found at the Auction Nudge <a href="http://www.auctionnudg
 6. The Within Your Theme settings page
 
 == Changelog ==
+
+= 2.1 =
+Fixed bug with special characters in seller IDs. Thanks Jon-Paul for pointing this out to me.
 
 = 2.0 =
 * Plugin completely rewritten
