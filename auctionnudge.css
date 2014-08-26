@@ -14,6 +14,10 @@
 #an-custom-field-container fieldset {
 	margin-bottom: 20px;
 }
+.an-widget-container fieldset {
+	margin: 10px 0;	
+}
+.an-widget-container fieldset legend,
 #an-custom-field-container fieldset legend {
 	display: block;
 	padding: 7px;
@@ -25,9 +29,16 @@
 	border-radius: 5px;
 	cursor: pointer;
 }
-#an-custom-field-container .parameter-group {
+.an-widget-container fieldset legend {
+	width: 95%;
+}
+#an-custom-field-container .an-parameter-group {
 	width: 400px;
 }
+.an-widget-container .an-parameter-group-content p {
+	margin: 10px 0 0 0;
+}
+.an-widget-container label,
 #an-custom-field-container label {
 	display: block;
 	padding: 3px;
@@ -35,22 +46,31 @@
 	width: 200px;
 	font-weight: bold;
 }
+.an-widget-container label {
+	width: 70%;	
+}
+.an-widget-container label a,
 #an-custom-field-container label a {
 	cursor: help;
 	text-decoration: none;
 }
+.an-widget-container .control-group,
 #an-custom-field-container .control-group {
 	margin: 3px 0;
 	padding: 3px;
 	width: 400px;
 }
+.an-widget-container .control-group {
+	width: 100%;
+}
+.an-widget-container input[type="text"],
 #an-custom-field-container input[type="text"] {
 	width: 180px;
 }
+.an-widget-container select,
 #an-custom-field-container select {
 	width: 180px;
 }
-#an-custom-field-container .controls {}
 
 /* Custom fields tabs */
 ul#an-tab-links {
@@ -79,10 +99,10 @@ ul#an-tab-links li a.active {
 div.an-custom-field-tab {}
 
 /* Individual Fields */
-#parameter-group-keyword label {
+.an-parameter-group-keyword label {
 	width: 160px;
 }
-#parameter-group-keyword input[type="text"] {
+.an-parameter-group-keyword input[type="text"] {
 	width: 220px;
 }
 
