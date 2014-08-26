@@ -13,10 +13,10 @@ This plugin enables you to embed your live eBay information on your WordPress si
 
 This plugin enables you to embed your live eBay information on your WordPress site using <a href="http://www.auctionnudge.com/">Auction Nudge</a>. Auction Nudge is a set of free widgets to integrate eBay into your own website. Once installed, all tools will update automatically to display your most recent eBay information. The following tools are available to integrate eBay into your own website:
 
-* Your eBay Listings - displays your active items, with lots of options and filters to choose from
-* Your eBay Ads - displays your current listings in an interactive banner ad, with different sizes and colours to choose from
-* Your eBay Profile - displays your eBay profile information like feedback rating and date of registration as a badge
-* Your eBay Feedback - displays your most recent feedback comments
+* **Your eBay Listings** - displays your active items, with lots of options and filters to choose from
+* **Your eBay Ads** - displays your current listings in an interactive banner ad, with different sizes and colours to choose from
+* **Your eBay Profile** - displays your eBay profile information like feedback rating and date of registration as a badge
+* **Your eBay Feedback** - displays your most recent feedback comments
 
 This plugin allows you to add Auction Nudge within your posts and pages using shortcodes, as widgets or directly from within your theme.
 
@@ -62,7 +62,7 @@ The following options are available for the Your eBay Listings tool:
 * Filter by keyword
 * Filter by category ID
 
-Auction Nudge is not owned or operated by eBay Inc. eBay and the eBay logo are trademarks of eBay Inc. As a member of the eBay Partner Network we may receive anonymous referral commissions from eBay if a successful transaction occurs after clicking an Auction Nudge link to eBay, at no cost to the user. 
+*Auction Nudge is not owned or operated by eBay Inc. eBay and the eBay logo are trademarks of eBay Inc. As a member of the eBay Partner Network we may receive anonymous referral commissions from eBay if a successful transaction occurs after clicking an Auction Nudge link to eBay, at no cost to the user.*
 
 == Installation ==
 
