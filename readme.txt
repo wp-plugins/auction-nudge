@@ -172,6 +172,14 @@ div#auction-nudge-items table.columns tr.alt {
 
 All themes can be adjusted in this way.
 
+= Auction Nudge isn't loading, what's wrong? =
+
+A common reason for Auction Nudge not loading is the use of ad blocking browser plugins. If you are using such a plugin, disable it, or add an exception to see if Auction Nudge loads without it.
+
+Another reason for Auction Nudge failing to load on your page is Javascript errors from other scripts. You can check for these in your browser's error console.
+
+If this doesn't resolve your issue, then please <a target="_blank" href="http://www.auctionnudge.com/contact">get in touch</a> and be sure to include a link to your site where you have the code snippet installed so I can investigate further.
+
 = Where can I find more help? =
 
 Lots more help can be found at the Auction Nudge <a href="http://www.auctionnudge.com/help">Help page</a>.
