@@ -3,7 +3,7 @@
 Plugin Name: Auction Nudge
 Plugin URI: http://www.auctionnudge.com/wordpress-plugin
 Description: This plugin enables you to embed your live eBay information on your WordPress site using Auction Nudge. An options box will be added to the edit page/post screen below the content editor. <a href="options-general.php?page=an_options_page">Settings page</a>.
-Version: 3.1
+Version: 3.2
 Author: Joseph Hawes
 Author URI: http://www.josephhawes.co.uk/
 License: GPL2
@@ -27,8 +27,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 //Settings
-$plugin_settings = array(
+$an_plugin_settings = array(
 	'plugin_name' => 'Auction Nudge',
+	'plugin_version' => '3.2',
 	'custom_field_prefix' => 'an',
 	'shortcode' => 'auction-nudge',
 	'request_item_endpoint' => '//www.auctionnudge.com/item_build/js/',
@@ -163,7 +164,20 @@ $plugin_settings = array(
 			'options' => array(
 				'1' => 'Yes',
 				'0' => 'No'
-			),				
+			)
+		),
+		'item_blank'  => array(
+			'name' => 'item_blank',
+			'id' => 'item_blank',
+			'tip' => 'Enabling this option will open item links in a new browser tab.',
+			'type' => 'radio',
+			'group' => 'display',
+			'title' => 'Open links in new tab?',
+			'default' => '0',
+			'options' => array(
+				'1' => 'Yes',
+				'0' => 'No'
+			)
 		),
 		//Advanced
 		'item_sortOrder'  => array(
@@ -284,7 +298,7 @@ $plugin_settings = array(
 			'options' => array(
 				'1' => 'Yes',
 				'0' => 'No'
-			),				
+			)				
 		),
 		'ad_hide_username'  => array(
 			'name' => 'ad_hide_username',
@@ -297,7 +311,7 @@ $plugin_settings = array(
 			'options' => array(
 				'1' => 'Yes',
 				'0' => 'No'
-			),				
+			)			
 		),				
 		//Advanced
 		'ad_sortOrder'  => array(
@@ -373,7 +387,20 @@ $plugin_settings = array(
 			),
 			'default' => 'star_grey',
 			'title' => 'Theme'
-		)
+		),
+		'profile_blank'  => array(
+			'name' => 'profile_blank',
+			'id' => 'profile_blank',
+			'tip' => 'Enabling this option will open the link to your profile in a new browser tab.',
+			'type' => 'radio',
+			'group' => 'display',
+			'title' => 'Open links in new tab?',
+			'default' => '0',
+			'options' => array(
+				'1' => 'Yes',
+				'0' => 'No'
+			)
+		)		
 	),
 	//Feedback tool parameters	
 	'feedback_parameters' => array(
@@ -426,6 +453,19 @@ $plugin_settings = array(
 			),
 			'default' => 'FeedbackReceived',
 			'title' => 'Feedback type'
+		),
+		'feedback_blank'  => array(
+			'name' => 'feedback_blank',
+			'id' => 'feedback_blank',
+			'tip' => 'Enabling this option will open item links in a new browser tab.',
+			'type' => 'radio',
+			'group' => 'display',
+			'title' => 'Open links in new tab?',
+			'default' => '0',
+			'options' => array(
+				'1' => 'Yes',
+				'0' => 'No'
+			)
 		)
 	)	
 );
@@ -442,7 +482,7 @@ function unprefix($key) {
 }
 
 function an_build_snippet($tool = 'LISTINGS', $parameters){
-	global $plugin_settings;
+	global $an_plugin_settings;
 
 	//Build URL data
 	$url_data = '';
@@ -456,7 +496,7 @@ function an_build_snippet($tool = 'LISTINGS', $parameters){
 			switch($p_key) {
 				case 'UserID':
 				case 'SellerID':
-					$p_value = str_replace($plugin_settings['username_bad'], $plugin_settings['username_good'], $p_value);
+					$p_value = str_replace($an_plugin_settings['username_bad'], $an_plugin_settings['username_good'], $p_value);
 					break;
 			}
 			
@@ -474,7 +514,7 @@ function an_build_snippet($tool = 'LISTINGS', $parameters){
 	switch($tool) {
 		case 'PROFILE' :
 			$out = '<script type="text/javascript" src="';
-			$out .= $plugin_settings['request_profile_endpoint'];
+			$out .= $an_plugin_settings['request_profile_endpoint'];
 			$out .= $src;
 			$out .= '"></script>';
 			$out .= '<div id="auction-nudge-profile" class="auction-nudge">&nbsp;</div>';
@@ -482,7 +522,7 @@ function an_build_snippet($tool = 'LISTINGS', $parameters){
 			break;
 		case 'FEEDBACK' :
 			$out = '<script type="text/javascript" src="';
-			$out .= $plugin_settings['request_feedback_endpoint'];
+			$out .= $an_plugin_settings['request_feedback_endpoint'];
 			$out .= $src;
 			$out .= '"></script>';
 			$out .= '<div id="auction-nudge-feedback" class="auction-nudge">&nbsp;</div>';
@@ -491,7 +531,7 @@ function an_build_snippet($tool = 'LISTINGS', $parameters){
 		case 'ADS' :
 			$format_dimensions = explode('x', $parameters['ad_format']);
 			$out = '<iframe width="' . $format_dimensions[0] . '" height="' . $format_dimensions[1] . '" style="border:none" frameborder="0" src="';
-			$out .= $plugin_settings['request_ad_endpoint'];
+			$out .= $an_plugin_settings['request_ad_endpoint'];
 			$out .= $src;
 			$out .= '"></iframe>';
 		
@@ -499,7 +539,7 @@ function an_build_snippet($tool = 'LISTINGS', $parameters){
 		case 'LISTINGS' :
 		default :
 			$out = '<script type="text/javascript" src="';
-			$out .= $plugin_settings['request_item_endpoint'];
+			$out .= $an_plugin_settings['request_item_endpoint'];
 			$out .= $src;
 			$out .= '"></script>';
 			$out .= '<div id="auction-nudge-items" class="auction-nudge">&nbsp;</div>';
@@ -520,7 +560,7 @@ function an_build_snippet($tool = 'LISTINGS', $parameters){
  * Shortcode
  */
 function an_shortcode($shortcode_attrs){
-	global $post, $plugin_settings;
+	global $post, $an_plugin_settings;
 	
 	//Default tool
 	$tool = 'LISTINGS';
@@ -534,7 +574,7 @@ function an_shortcode($shortcode_attrs){
 	switch($tool) {
 		case 'PROFILE' :
 			//Get custom values
-			foreach($plugin_settings['profile_parameters'] as $field) {
+			foreach($an_plugin_settings['profile_parameters'] as $field) {
 				$request_parameters[$field['name']] = get_post_meta($post->ID, $field['name'], true);
 			}
 			
@@ -544,7 +584,7 @@ function an_shortcode($shortcode_attrs){
 			break;
 		case 'FEEDBACK' :
 			//Get custom values
-			foreach($plugin_settings['feedback_parameters'] as $field) {
+			foreach($an_plugin_settings['feedback_parameters'] as $field) {
 				$request_parameters[$field['name']] = get_post_meta($post->ID, $field['name'], true);
 			}
 			
@@ -557,7 +597,7 @@ function an_shortcode($shortcode_attrs){
 			break;
 		case 'ADS' :
 			//Get custom values
-			foreach($plugin_settings['ad_parameters'] as $field) {
+			foreach($an_plugin_settings['ad_parameters'] as $field) {
 				$request_parameters[$field['name']] = get_post_meta($post->ID, $field['name'], true);
 			}
 			
@@ -568,7 +608,7 @@ function an_shortcode($shortcode_attrs){
 		case 'LISTINGS' :
 		default:
 			//Get custom values
-			foreach($plugin_settings['item_parameters'] as $field) {
+			foreach($an_plugin_settings['item_parameters'] as $field) {
 				$request_parameters[$field['name']] = get_post_meta($post->ID, $field['name'], true);
 			}
 			
@@ -580,7 +620,7 @@ function an_shortcode($shortcode_attrs){
 	
 	return $out;
 }
-add_shortcode($plugin_settings['shortcode'], 'an_shortcode');
+add_shortcode($an_plugin_settings['shortcode'], 'an_shortcode');
 
 /**
  * Replace markers
@@ -601,6 +641,15 @@ function an_the_content($content) {
 	return str_replace($old, $new, $content);
 }
 add_filter('the_content', 'an_the_content');
+
+/**
+ * Output version #
+ */
+function an_output_version() {
+	global $an_plugin_settings;
+	echo '<!-- AN v' . $an_plugin_settings['plugin_version'] . ' -->' . "\n";	
+}
+add_action('wp_head','an_output_version');
 
 /**
  * Output items
@@ -663,10 +712,10 @@ add_action('admin_init', 'an_admin_init');
  * Create the custom fields box
  */
 function an_create_custom_fields_box() {
-	global $plugin_settings;
+	global $an_plugin_settings;
 	
 	foreach(array('post', 'page') as $post_type) {
-		add_meta_box('an-custom-fields', $plugin_settings['plugin_name'], 'an_create_custom_field_form', $post_type, 'normal', 'high');
+		add_meta_box('an-custom-fields', $an_plugin_settings['plugin_name'], 'an_create_custom_field_form', $post_type, 'normal', 'high');
 	}
 }
 
@@ -674,7 +723,7 @@ function an_create_custom_fields_box() {
  * Create the custom field form
  */
 function an_create_custom_field_form() {
-	global $post, $plugin_settings;
+	global $post, $an_plugin_settings;
 	
 	echo '<div id="an-custom-field-container">' . "\n";
 	echo '<ul id="an-tab-links">' . "\n";
@@ -686,14 +735,14 @@ function an_create_custom_field_form() {
 	//Item tool
 	echo '<div id="listings-tab" class="an-custom-field-tab">' . "\n";			
 	echo '	<div class="an-custom-field-help">' . "\n";
-	echo '		<p>Use these options to specify which of your eBay items to display within your page/post.<br /><br />Add the following shortcode within your content editor to specify where the items will appear:<br /><br />[' . $plugin_settings['shortcode'] . ' tool="listings"]<br /><br /><small><b>Note:</b> Only one set of eBay listings can be loaded per page.</small><br /></p>' . "\n";
+	echo '		<p>Use these options to specify which of your eBay items to display within your page/post.<br /><br />Add the following shortcode within your content editor to specify where the items will appear:<br /><br />[' . $an_plugin_settings['shortcode'] . ' tool="listings"]<br /><br /><small><b>Note:</b> Only one set of eBay listings can be loaded per page.</small><br /></p>' . "\n";
 	echo '		<br /><a class="button thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Plugin Help</a>' . "\n";
 	echo '	</div>' . "\n";
 	echo '	<h2>Your eBay Listings</h2>' . "\n";						
 	$current_group = false;
 	$count = 0;	
-	foreach($plugin_settings['item_parameters'] as $field) {
-		$group = $plugin_settings['item_parameter_groups'][$field['group']];
+	foreach($an_plugin_settings['item_parameters'] as $field) {
+		$group = $an_plugin_settings['item_parameter_groups'][$field['group']];
 		//Output group?
 		if($current_group != $group) {
 			//Close previous fieldset?
@@ -718,14 +767,14 @@ function an_create_custom_field_form() {
 	//Ad tool
 	echo '<div id="ads-tab" class="an-custom-field-tab" style="display:none">' . "\n";			
 	echo '	<div class="an-custom-field-help">' . "\n";
-	echo '		<p>Use these options to specify the type of ad to display within your page/post.<br /><br />Add the following shortcode within your content editor to specify where the ad will appear:<br /><br />[' . $plugin_settings['shortcode'] . ' tool="ads"]<br /><br /><small><b>Note:</b> Only one type of eBay ad can be loaded within each content area.</small><br /></p>' . "\n";
+	echo '		<p>Use these options to specify the type of ad to display within your page/post.<br /><br />Add the following shortcode within your content editor to specify where the ad will appear:<br /><br />[' . $an_plugin_settings['shortcode'] . ' tool="ads"]<br /><br /><small><b>Note:</b> Only one type of eBay ad can be loaded within each content area.</small><br /></p>' . "\n";
 	echo '		<br /><a class="button thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Plugin Help</a>' . "\n";
 	echo '	</div>' . "\n";
 	echo '	<h2>Your eBay Ads</h2>' . "\n";						
 	$current_group = false;
 	$count = 0;	
-	foreach($plugin_settings['ad_parameters'] as $field) {
-		$group = $plugin_settings['item_parameter_groups'][$field['group']];
+	foreach($an_plugin_settings['ad_parameters'] as $field) {
+		$group = $an_plugin_settings['item_parameter_groups'][$field['group']];
 		//Output group?
 		if($current_group != $group) {
 			//Close previous fieldset?
@@ -750,12 +799,12 @@ function an_create_custom_field_form() {
 	//Profile tool
 	echo '<div id="profile-tab" class="an-custom-field-tab" style="display:none">' . "\n";				
 	echo '	<div class="an-custom-field-help">' . "\n";
-	echo '		<p>Use these options to specify how your eBay profile will appear within your page/post.<br /><br />Add the following shortcode within your content editor to specify where the items will appear:<br /><br />[' . $plugin_settings['shortcode'] . ' tool="profile"]<br /></p>' . "\n";
+	echo '		<p>Use these options to specify how your eBay profile will appear within your page/post.<br /><br />Add the following shortcode within your content editor to specify where the items will appear:<br /><br />[' . $an_plugin_settings['shortcode'] . ' tool="profile"]<br /></p>' . "\n";
 	echo '		<br /><a class="button thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Plugin Help</a>' . "\n";
 	echo '	</div>' . "\n";
 	echo '	<h2>Your eBay Profile</h2>' . "\n";						
 	$count = 0;
-	foreach($plugin_settings['profile_parameters'] as $field) {
+	foreach($an_plugin_settings['profile_parameters'] as $field) {
 		$set_value = get_post_meta($post->ID, $field['name'], true);
 		an_create_custom_field_input($field, $count, $set_value);
 		$count++;
@@ -765,12 +814,12 @@ function an_create_custom_field_form() {
 	//Feedback tool
 	echo '<div id="feedback-tab" class="an-custom-field-tab" style="display:none">' . "\n";			
 	echo '	<div class="an-custom-field-help">' . "\n";
-	echo '		<p>Use these options to specify how your eBay feedback will appear within your page/post.<br /><br />Add the following shortcode within your content editor to specify where the items will appear:<br /><br />[' . $plugin_settings['shortcode'] . ' tool="feedback"]<br /></p>' . "\n";
+	echo '		<p>Use these options to specify how your eBay feedback will appear within your page/post.<br /><br />Add the following shortcode within your content editor to specify where the items will appear:<br /><br />[' . $an_plugin_settings['shortcode'] . ' tool="feedback"]<br /></p>' . "\n";
 	echo '		<br /><a class="button thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Plugin Help</a>' . "\n";
 	echo '	</div>' . "\n";
 	echo '	<h2>Your eBay Feedback</h2>' . "\n";						
 	$count = 0;
-	foreach($plugin_settings['feedback_parameters'] as $field) {
+	foreach($an_plugin_settings['feedback_parameters'] as $field) {
 		$set_value = get_post_meta($post->ID, $field['name'], true);
 		an_create_custom_field_input($field, $count, $set_value);
 		$count++;
@@ -789,7 +838,7 @@ function an_create_custom_field_form() {
  * Create the custom fields inputs
  */
 function an_create_custom_field_input($field, $count = false, $set_value = false) {
-	global $plugin_settings;
+	global $an_plugin_settings;
 	
 	//Get options
 	$options = get_option('an_options');
@@ -900,13 +949,13 @@ function an_create_custom_field_input($field, $count = false, $set_value = false
  * Save the custom field data
  */
 function an_save_custom_fields($post_id, $post) {
-	global $plugin_settings;
+	global $an_plugin_settings;
 	
 	$plugin_parameters = array_merge(
-		$plugin_settings['item_parameters'],
-		$plugin_settings['ad_parameters'],
-		$plugin_settings['profile_parameters'],
-		$plugin_settings['feedback_parameters']
+		$an_plugin_settings['item_parameters'],
+		$an_plugin_settings['ad_parameters'],
+		$an_plugin_settings['profile_parameters'],
+		$an_plugin_settings['feedback_parameters']
 	);
 	
 	foreach($plugin_parameters as $field) {
@@ -931,8 +980,8 @@ function an_save_custom_fields($post_id, $post) {
 function an_admin_page() {
 	//Permissions
 	if(current_user_can('manage_options')) {
-		global $plugin_settings;
-		add_options_page($plugin_settings['plugin_name'] . ' Options', $plugin_settings['plugin_name'], 'manage_options', 'an_options_page', 'an_options_page');
+		global $an_plugin_settings;
+		add_options_page($an_plugin_settings['plugin_name'] . ' Options', $an_plugin_settings['plugin_name'], 'manage_options', 'an_options_page', 'an_options_page');
 	}
 }
 add_action('admin_menu', 'an_admin_page');
@@ -941,11 +990,13 @@ add_action('admin_menu', 'an_admin_page');
  * Display the admin options page
  */
 function an_options_page() {
-	global $plugin_settings;
+	global $an_plugin_settings;
 
 	echo '<div id="an-options-container">' . "\n";
 	echo '<a class="button right thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Plugin Help</a>' . "\n";
-	echo '	<h2>' . $plugin_settings['plugin_name'] . '</h2>' . "\n";
+	echo '	<h2>' . $an_plugin_settings['plugin_name'] . '</h2>' . "\n";
+	
+	echo '<p>To add Auction Nudge to your pages or posts use the Auction Nudge box on the edit page. You can also add Auction Nudge to your theme as <a href="' . admin_url('widgets.php') . '">Widgets</a>. The Settings below can be used to specify some defaults and style rules, but are not required.</p>' . "\n";
 	
 	//Tabs
 	$active_tab = ($_GET['tab']) ? $_GET['tab'] : 'general';
@@ -1089,7 +1140,8 @@ function an_feedback_setting() {
  * eBay ID
  */
 function an_ebay_user_text() {
-	echo '<p>Entering a default eBay user ID here means you don\'t need to keep re-entering it on each page / post where you want to use Auction Nudge.</p>';
+	echo '<p>Entering a default eBay user ID here will save you from re-entering it on each page, post or widget where you want to use Auction Nudge.</p>' . "\n";
+	echo '<p>Changing this setting won\'t update each instance of Auction Nudge though, so if you change usernames at a later date you will need to update each page, post or widget individually.</p>';
 	echo '<p>Your eBay ID is the username that is associated to your eBay account and appears on your listings.</p>' . "\n";
 }
 
@@ -1207,7 +1259,7 @@ class Auction_Nudge_Listings_Widget extends WP_Widget {
 	}
 
 	public function form($instance) {
-		global $plugin_settings;
+		global $an_plugin_settings;
 		
 		$count = 0;		
 
@@ -1216,8 +1268,8 @@ class Auction_Nudge_Listings_Widget extends WP_Widget {
 		$count++;
 
 		$current_group = false;
-		foreach($plugin_settings['item_parameters'] as $field) {
-			$group = $plugin_settings['item_parameter_groups'][$field['group']];
+		foreach($an_plugin_settings['item_parameters'] as $field) {
+			$group = $an_plugin_settings['item_parameter_groups'][$field['group']];
 			//Output group?
 			if($current_group != $group) {
 				//Close previous fieldset?
@@ -1242,13 +1294,13 @@ class Auction_Nudge_Listings_Widget extends WP_Widget {
 	}
 
 	public function update($new_instance, $old_instance) {
-		global $plugin_settings;
+		global $an_plugin_settings;
 		
 		$instance = array();
 
 		$instance['an_widget_title'] = an_get_widget_title($new_instance);
 
-		foreach($plugin_settings['item_parameters'] as $field) {
+		foreach($an_plugin_settings['item_parameters'] as $field) {
 			$instance[$field['name']] = (trim($new_instance[$field['name']]) !== '') ? strip_tags($new_instance[$field['name']]) : '';
 		}
 		
@@ -1279,7 +1331,7 @@ class Auction_Nudge_Ads_Widget extends WP_Widget {
 	}
 
 	public function form($instance) {
-		global $plugin_settings;
+		global $an_plugin_settings;
 
 		$count = 0;		
 
@@ -1288,8 +1340,8 @@ class Auction_Nudge_Ads_Widget extends WP_Widget {
 		$count++;
 
 		$current_group = false;
-		foreach($plugin_settings['ad_parameters'] as $field) {
-			$group = $plugin_settings['item_parameter_groups'][$field['group']];
+		foreach($an_plugin_settings['ad_parameters'] as $field) {
+			$group = $an_plugin_settings['item_parameter_groups'][$field['group']];
 			//Output group?
 			if($current_group != $group) {
 				//Close previous fieldset?
@@ -1314,13 +1366,13 @@ class Auction_Nudge_Ads_Widget extends WP_Widget {
 	}
 
 	public function update($new_instance, $old_instance) {
-		global $plugin_settings;
+		global $an_plugin_settings;
 		
 		$instance = array();
 
 		$instance['an_widget_title'] = an_get_widget_title($new_instance);
 
-		foreach($plugin_settings['ad_parameters'] as $field) {
+		foreach($an_plugin_settings['ad_parameters'] as $field) {
 			$instance[$field['name']] = (trim($new_instance[$field['name']]) !== '') ? strip_tags($new_instance[$field['name']]) : '';
 		}
 		
@@ -1351,7 +1403,7 @@ class Auction_Nudge_Profile_Widget extends WP_Widget {
 	}
 
 	public function form($instance) {
-		global $plugin_settings;
+		global $an_plugin_settings;
 
 		$count = 0;		
 
@@ -1359,7 +1411,7 @@ class Auction_Nudge_Profile_Widget extends WP_Widget {
 		an_build_widget_title_input($instance, $count, $this->get_field_name('an_widget_title'));
 		$count++;
 
-		foreach($plugin_settings['profile_parameters'] as $field) {
+		foreach($an_plugin_settings['profile_parameters'] as $field) {
 			$set_value = (isset($instance[$field['name']])) ? $instance[$field['name']] : '';
 			$field['name'] = $this->get_field_name($field['name']);
 			an_create_custom_field_input($field, $count, $set_value);
@@ -1369,13 +1421,13 @@ class Auction_Nudge_Profile_Widget extends WP_Widget {
 	}
 
 	public function update($new_instance, $old_instance) {
-		global $plugin_settings;
+		global $an_plugin_settings;
 		
 		$instance = array();
 
 		$instance['an_widget_title'] = an_get_widget_title($new_instance);
 
-		foreach($plugin_settings['profile_parameters'] as $field) {
+		foreach($an_plugin_settings['profile_parameters'] as $field) {
 			$instance[$field['name']] = (trim($new_instance[$field['name']]) !== '') ? strip_tags($new_instance[$field['name']]) : '';
 		}
 		
@@ -1407,7 +1459,7 @@ class Auction_Nudge_Feedback_Widget extends WP_Widget {
 	}
 
 	public function form($instance) {
-		global $plugin_settings;
+		global $an_plugin_settings;
 
 		$count = 0;		
 
@@ -1415,7 +1467,7 @@ class Auction_Nudge_Feedback_Widget extends WP_Widget {
 		an_build_widget_title_input($instance, $count, $this->get_field_name('an_widget_title'));
 		$count++;
 		
-		foreach($plugin_settings['feedback_parameters'] as $field) {
+		foreach($an_plugin_settings['feedback_parameters'] as $field) {
 			$set_value = (isset($instance[$field['name']])) ? $instance[$field['name']] : '';
 			$field['name'] = $this->get_field_name($field['name']);
 			an_create_custom_field_input($field, $count, $set_value);
@@ -1425,13 +1477,13 @@ class Auction_Nudge_Feedback_Widget extends WP_Widget {
 	}
 
 	public function update($new_instance, $old_instance) {
-		global $plugin_settings;
+		global $an_plugin_settings;
 		
 		$instance = array();
 
 		$instance['an_widget_title'] = an_get_widget_title($new_instance);
 		
-		foreach($plugin_settings['feedback_parameters'] as $field) {
+		foreach($an_plugin_settings['feedback_parameters'] as $field) {
 			$instance[$field['name']] = (trim($new_instance[$field['name']]) !== '') ? strip_tags($new_instance[$field['name']]) : '';
 		}
 		

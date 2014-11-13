@@ -3,7 +3,7 @@ Contributors: morehawes
 Tags: Auction Nudge, auctionnudge.com, eBay, plugin, widget, widgets, embed, sidebar, integrate, integration, listings, item, items, profile, feedback, free, products, ad, ads, adverts, banner, banners, shop, store, advertise, advertising, on your own site, automatic, automatically, update, category, keywords, seller, user, username, links, images, pictures, international, US, UK, Canada, Australia, Belgium, Germany, France, Spain, Austria, Italy, Netherlands, Ireland, Switzerland, ebay.com, ebay.co.uk, ebay.ca, ebay.com.au, ebay.be, ebay.de, ebay.fr, ebay.at, ebay.it, ebay.nl, ebay.ie, ebay.pl, ebay.es, ebay.ch
 Requires at least: 2.8
 Tested up to: 4.0
-Stable tag: 3.1
+Stable tag: 3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,7 @@ The following options are available for the Your eBay Listings tool:
 * Grid columns
 * Grid width
 * Show eBay Logo?
+* Open links in new tab?
 
 = Advanced options =
 
@@ -204,6 +205,10 @@ This means Auction Nudge is free to use and there are no 'pay to unlock' type re
 9. The Within Your Theme settings page, allowing you to use the plugin from within your theme
 
 == Changelog ==
+
+= 3.2 =
+* Made wording on Settings page a little clearer
+* Added 'Open links in new tab?' option to Your eBay Listings, Your eBay Profile and Your eBay Feedback tools
 
 = 3.1 =
 Fixed issue with older versions of PHP which do not suport anonymous functions. Thanks Jeff for pointing this out to me.
