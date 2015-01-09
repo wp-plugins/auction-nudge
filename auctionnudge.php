@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Auction Nudge
-Plugin URI: http://www.auctionnudge.com/wordpress-plugin
+Plugin URI: https://www.auctionnudge.com/wordpress-plugin
 Description: This plugin enables you to embed your live eBay information on your WordPress site using Auction Nudge. An options box will be added to the edit page/post screen below the content editor. <a href="options-general.php?page=an_options_page">Settings page</a>.
-Version: 3.2
+Version: 4.0
 Author: Joseph Hawes
 Author URI: http://www.josephhawes.co.uk/
 License: GPL2
@@ -29,7 +29,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //Settings
 $an_plugin_settings = array(
 	'plugin_name' => 'Auction Nudge',
-	'plugin_version' => '3.2',
+	'plugin_version' => '4.0',
 	'custom_field_prefix' => 'an',
 	'shortcode' => 'auction-nudge',
 	'request_item_endpoint' => '//www.auctionnudge.com/item_build/js/',
@@ -108,11 +108,24 @@ $an_plugin_settings = array(
 		'item_MaxEntries'  => array(
 			'name' => 'item_MaxEntries',
 			'id' => 'item_MaxEntries',
-			'tip' => 'This is the maximum number of items you want display. The most items Auction Nudge can display is 100.',
+			'tip' => 'This is the number of items you want display per page, the maximum value is 100. You can display multiple pages of items using the \'Show multiple pages?\' option below.',
 			'group' => 'display',
 			'title' => 'Number of items to show',
 			'default' => '6'
-		),	
+		),
+		'item_page'  => array(
+			'name' => 'item_page',
+			'id' => 'item_page',
+			'tip' => 'If you enable this option and have more items listed than the value for the \'Number of items to show\' option above then users can paginate between multiple pages of items.',
+			'type' => 'radio',
+			'group' => 'display',
+			'title' => 'Show multiple pages?',
+			'default' => 'init',
+			'options' => array(
+				'init' => 'Yes',
+				'' => 'No'
+			)
+		),		
 		'item_carousel_scroll'  => array(
 			'name' => 'item_carousel_scroll',
 			'id' => 'item_carousel_scroll',
@@ -179,6 +192,14 @@ $an_plugin_settings = array(
 				'0' => 'No'
 			)
 		),
+		'item_img_size'  => array(
+			'name' => 'item_img_size',
+			'id' => 'item_img_size',
+			'tip' => 'Specify in pixels the maximum image size. Depending on the image ratio, the image width or height will not exceed this size. This value should be numeric only, \'px\' not needed (if blank defaults to 64)',
+			'group' => 'display',
+			'title' => 'Image Size',
+			'default' => '80'
+		),		
 		//Advanced
 		'item_sortOrder'  => array(
 			'name' => 'item_sortOrder',
@@ -433,6 +454,18 @@ $an_plugin_settings = array(
 			'default' => '3',
 			'title' => 'eBay site'
 		),
+		'feedback_theme'  => array(
+			'name' => 'feedback_theme',
+			'id' => 'feedback_theme',
+			'tip' => 'Your feedback will display differently on your site depending on which theme you choose.',
+			'type' => 'select',
+			'options' => array(
+				'profile_table' => 'Profile table',
+				'table' => 'Basic table'
+			),
+			'default' => 'profile_table',
+			'title' => 'Theme'
+		),		
 		'feedback_limit'  => array(
 			'name' => 'feedback_limit',
 			'id' => 'feedback_limit',
@@ -550,6 +583,14 @@ function an_build_snippet($tool = 'LISTINGS', $parameters){
 	return $out;
 }
 
+function an_custom_fields_set() {
+	global $post;
+	
+	$post_meta = get_post_meta($post->ID);
+	
+	return sizeof($post_meta) > 0;
+}
+
 /**
  * ======================================================== 
  * =================== FRONT END ==========================
@@ -589,7 +630,9 @@ function an_shortcode($shortcode_attrs){
 			}
 			
 			//Theme
-			$request_parameters['feedback_theme'] = 'table';
+			if(! array_key_exists('feedback_theme', $request_parameters) || ! $request_parameters['feedback_theme']) {
+				$request_parameters['feedback_theme'] = 'table';				
+			}
 			
 			//Get snippet
 			$out = an_build_snippet('FEEDBACK', $request_parameters);
@@ -736,12 +779,26 @@ function an_create_custom_field_form() {
 	echo '<div id="listings-tab" class="an-custom-field-tab">' . "\n";			
 	echo '	<div class="an-custom-field-help">' . "\n";
 	echo '		<p>Use these options to specify which of your eBay items to display within your page/post.<br /><br />Add the following shortcode within your content editor to specify where the items will appear:<br /><br />[' . $an_plugin_settings['shortcode'] . ' tool="listings"]<br /><br /><small><b>Note:</b> Only one set of eBay listings can be loaded per page.</small><br /></p>' . "\n";
-	echo '		<br /><a class="button thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Plugin Help</a>' . "\n";
+	echo '		<br /><a class="button thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Plugin Help</a> <a class="button" target="_blank" href="https://www.youtube.com/watch?v=smamgdwCD74">Video Tutorial</a>' . "\n";
 	echo '	</div>' . "\n";
 	echo '	<h2>Your eBay Listings</h2>' . "\n";						
 	$current_group = false;
 	$count = 0;	
 	foreach($an_plugin_settings['item_parameters'] as $field) {
+		
+		//Maintain old defaults
+		//If custom fields have already been saved, then modify some defaults.
+		//This is used when new paramters have been added, but we don't want
+		//to add them to old feeds by default
+		if(an_custom_fields_set()) {
+			switch($field['name']) {
+				case 'item_img_size' :
+				case 'item_page' :
+					$field['default'] = '';					
+					break;
+			}
+		}
+		
 		$group = $an_plugin_settings['item_parameter_groups'][$field['group']];
 		//Output group?
 		if($current_group != $group) {
@@ -768,7 +825,7 @@ function an_create_custom_field_form() {
 	echo '<div id="ads-tab" class="an-custom-field-tab" style="display:none">' . "\n";			
 	echo '	<div class="an-custom-field-help">' . "\n";
 	echo '		<p>Use these options to specify the type of ad to display within your page/post.<br /><br />Add the following shortcode within your content editor to specify where the ad will appear:<br /><br />[' . $an_plugin_settings['shortcode'] . ' tool="ads"]<br /><br /><small><b>Note:</b> Only one type of eBay ad can be loaded within each content area.</small><br /></p>' . "\n";
-	echo '		<br /><a class="button thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Plugin Help</a>' . "\n";
+	echo '		<br /><a class="button thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Plugin Help</a> <a class="button" target="_blank" href="https://www.youtube.com/watch?v=smamgdwCD74">Video Tutorial</a>' . "\n";
 	echo '	</div>' . "\n";
 	echo '	<h2>Your eBay Ads</h2>' . "\n";						
 	$current_group = false;
@@ -799,8 +856,8 @@ function an_create_custom_field_form() {
 	//Profile tool
 	echo '<div id="profile-tab" class="an-custom-field-tab" style="display:none">' . "\n";				
 	echo '	<div class="an-custom-field-help">' . "\n";
-	echo '		<p>Use these options to specify how your eBay profile will appear within your page/post.<br /><br />Add the following shortcode within your content editor to specify where the items will appear:<br /><br />[' . $an_plugin_settings['shortcode'] . ' tool="profile"]<br /></p>' . "\n";
-	echo '		<br /><a class="button thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Plugin Help</a>' . "\n";
+	echo '		<p>Use these options to specify how your eBay profile will appear within your page/post.<br /><br />Add the following shortcode within your content editor to specify where the items will appear:<br /><br />[' . $an_plugin_settings['shortcode'] . ' tool="profile"]<br /><br /><small><b>Note:</b> Only one profile can be loaded per page.</small><br /></p>' . "\n";
+	echo '		<br /><a class="button thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Plugin Help</a> <a class="button" target="_blank" href="https://www.youtube.com/watch?v=smamgdwCD74">Video Tutorial</a>' . "\n";
 	echo '	</div>' . "\n";
 	echo '	<h2>Your eBay Profile</h2>' . "\n";						
 	$count = 0;
@@ -814,12 +871,22 @@ function an_create_custom_field_form() {
 	//Feedback tool
 	echo '<div id="feedback-tab" class="an-custom-field-tab" style="display:none">' . "\n";			
 	echo '	<div class="an-custom-field-help">' . "\n";
-	echo '		<p>Use these options to specify how your eBay feedback will appear within your page/post.<br /><br />Add the following shortcode within your content editor to specify where the items will appear:<br /><br />[' . $an_plugin_settings['shortcode'] . ' tool="feedback"]<br /></p>' . "\n";
-	echo '		<br /><a class="button thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Plugin Help</a>' . "\n";
+	echo '		<p>Use these options to specify how your eBay feedback will appear within your page/post.<br /><br />Add the following shortcode within your content editor to specify where the items will appear:<br /><br />[' . $an_plugin_settings['shortcode'] . ' tool="feedback"]<br /><br /><small><b>Note:</b> Only one set of feedback can be loaded per page.</small><br /></p>' . "\n";
+	echo '		<br /><a class="button thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Plugin Help</a> <a class="button" target="_blank" href="https://www.youtube.com/watch?v=smamgdwCD74">Video Tutorial</a>' . "\n";
 	echo '	</div>' . "\n";
 	echo '	<h2>Your eBay Feedback</h2>' . "\n";						
 	$count = 0;
 	foreach($an_plugin_settings['feedback_parameters'] as $field) {
+
+		//Maintain old defaults
+		if(an_custom_fields_set()) {
+			switch($field['name']) {
+				case 'feedback_theme' :
+					$field['default'] = 'table';
+					break;				
+			}
+		}
+		
 		$set_value = get_post_meta($post->ID, $field['name'], true);
 		an_create_custom_field_input($field, $count, $set_value);
 		$count++;
@@ -877,7 +944,7 @@ function an_create_custom_field_input($field, $count = false, $set_value = false
 				if($set_value == $value) {
 					$out .= ' selected="selected"';
 				//Do we have a default?
-				}	elseif($set_value === false && ($field['default'] && $field['default'] == $value)) {
+				}	elseif($set_value == false && ($field['default'] && $field['default'] == $value)) {
 					$out .= ' selected="selected"';				
 				}		
 				$out .= '>' . $description . '</option>' . "\n";
@@ -993,10 +1060,13 @@ function an_options_page() {
 	global $an_plugin_settings;
 
 	echo '<div id="an-options-container">' . "\n";
+	echo '<a class="button right" style="margin-left:5px" target="_blank" href="https://www.youtube.com/watch?v=smamgdwCD74">Video Tutorial</a>' . "\n";
 	echo '<a class="button right thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Plugin Help</a>' . "\n";
 	echo '	<h2>' . $an_plugin_settings['plugin_name'] . '</h2>' . "\n";
 	
 	echo '<p>To add Auction Nudge to your pages or posts use the Auction Nudge box on the edit page. You can also add Auction Nudge to your theme as <a href="' . admin_url('widgets.php') . '">Widgets</a>. The Settings below can be used to specify some defaults and style rules, but are not required.</p>' . "\n";
+	
+	echo '<p>For more details on how to use the plugin, you can watch the <a target="_blank" href="https://www.youtube.com/watch?v=smamgdwCD74">Video Tutorial</a>.</p>' . "\n";
 	
 	//Tabs
 	$active_tab = ($_GET['tab']) ? $_GET['tab'] : 'general';
@@ -1092,7 +1162,7 @@ add_action('admin_init', 'an_admin_settings');
  * Items text
  */
 function an_items_text() {
-	echo '<p>To begin <strong>you must obtain your code snippet from the Auction Nudge website</strong> <a target="_blank" href="http://www.auctionnudge.com/your-ebay-items">here</a> (shown as "Copy the code snippet onto your site") and paste it into the box below.</p>' . "\n";
+	echo '<p>To begin <strong>you must obtain your code snippet from the Auction Nudge website</strong> <a target="_blank" href="https://www.auctionnudge.com/your-ebay-items">here</a> (shown as "Copy the code snippet onto your site") and paste it into the box below.</p>' . "\n";
 	echo '<p>You can then call <code>&lt;?php an_items(); ?&gt;</code> from within your theme files to embed Your eBay Listings where desired.</p>' . "\n";
 }
 
@@ -1108,7 +1178,7 @@ function an_items_setting() {
  * Profile text
  */
 function an_profile_text() {
-	echo '<p>To begin <strong>you must obtain your code snippet from the Auction Nudge website</strong> <a target="_blank" href="http://www.auctionnudge.com/your-ebay-profile">here</a> (shown as "Copy the code snippet onto your site") and paste it into the box below.</p>' . "\n";
+	echo '<p>To begin <strong>you must obtain your code snippet from the Auction Nudge website</strong> <a target="_blank" href="https://www.auctionnudge.com/your-ebay-profile">here</a> (shown as "Copy the code snippet onto your site") and paste it into the box below.</p>' . "\n";
 	echo '<p>You can then call <code>&lt;?php an_profile(); ?&gt;</code> from within your theme files to embed Your eBay Profile where desired.</p>' . "\n";
 }
 
@@ -1124,7 +1194,7 @@ function an_profile_setting() {
  * Feedback text
  */
 function an_feedback_text() {
-	echo '<p>To begin <strong>you must obtain your code snippet from the Auction Nudge website</strong> <a target="_blank" href="http://www.auctionnudge.com/your-ebay-feedback">here</a> (shown as "Copy the code snippet onto your site") and paste it into the box below.</p>' . "\n";
+	echo '<p>To begin <strong>you must obtain your code snippet from the Auction Nudge website</strong> <a target="_blank" href="https://www.auctionnudge.com/your-ebay-feedback">here</a> (shown as "Copy the code snippet onto your site") and paste it into the box below.</p>' . "\n";
 	echo '<p>You can then call <code>&lt;?php an_feedback(); ?&gt;</code> from within your theme files to embed Your eBay Feedback where desired.</p>' . "\n";
 }
 
@@ -1158,7 +1228,7 @@ function an_ebay_user_setting() {
  */
 function an_css_text() {
 	echo '<p>You can modify the appearance of Auction Nudge by pasting CSS rules into this box.</p>' . "\n";
-	echo '<p>Ensure you target Auction Nudge content by starting your rules with <strong>div.auction-nudge</strong>. For example <code>div.auction-nudge a { color: red }</code> to make all Auction Nudge links red. You can find more information and demos on modifying the appearance of Auction Nudge <a target="_blank" href="http://www.auctionnudge.com/help#faq-css">here</a>.</p>' . "\n";
+	echo '<p>Ensure you target Auction Nudge content by starting your rules with <strong>div.auction-nudge</strong>. For example <code>div.auction-nudge a { color: red }</code> to make all Auction Nudge links red. You can find more information and demos on modifying the appearance of Auction Nudge <a target="_blank" href="https://www.auctionnudge.com/help#faq-css">here</a>.</p>' . "\n";
 }
 
 /**
@@ -1269,6 +1339,17 @@ class Auction_Nudge_Listings_Widget extends WP_Widget {
 
 		$current_group = false;
 		foreach($an_plugin_settings['item_parameters'] as $field) {
+
+			//Maintain old defaults
+			if(sizeof($instance) > 0) {
+				switch($field['name']) {
+					case 'item_img_size' :
+					case 'item_page' :
+						$field['default'] = '';					
+						break;
+				}
+			}
+			
 			$group = $an_plugin_settings['item_parameter_groups'][$field['group']];
 			//Output group?
 			if($current_group != $group) {
@@ -1451,8 +1532,11 @@ class Auction_Nudge_Feedback_Widget extends WP_Widget {
 		echo '<aside class="widget an-feedback-widget">' . "\n";
 		echo an_display_widget_title($instance);
 		unset($instance['an_widget_title']);
-				
-		$instance['feedback_theme'] = 'table';	
+
+		if(! array_key_exists('feedback_theme', $instance) || ! $instance['feedback_theme']) {
+			$instance['feedback_theme'] = 'table';	
+		}
+		
 		echo an_build_snippet('FEEDBACK', $instance);
 
 		echo '</aside>' . "\n";		
@@ -1464,10 +1548,21 @@ class Auction_Nudge_Feedback_Widget extends WP_Widget {
 		$count = 0;		
 
 		echo '<div class="an-widget-container">' . "\n";	
+		
 		an_build_widget_title_input($instance, $count, $this->get_field_name('an_widget_title'));
 		$count++;
 		
 		foreach($an_plugin_settings['feedback_parameters'] as $field) {
+
+			//Maintain old defaults
+			if(sizeof($instance) > 0) {
+				switch($field['name']) {
+					case 'feedback_theme' :
+						$field['default'] = 'table';
+						break;				
+				}
+			}
+
 			$set_value = (isset($instance[$field['name']])) ? $instance[$field['name']] : '';
 			$field['name'] = $this->get_field_name($field['name']);
 			an_create_custom_field_input($field, $count, $set_value);

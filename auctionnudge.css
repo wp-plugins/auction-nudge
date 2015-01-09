@@ -1,10 +1,10 @@
 #an-custom-field-container {
-	min-height: 310px;
+	min-height: 370px;
 }
 #an-custom-field-container .an-custom-field-help {
 	float: right;
 	padding: 10px;
-	width: 200px;
+	width: 220px;
 	border: 1px solid #DDDDDD;
 	background: #F9F9F9;
 }
@@ -127,9 +127,6 @@ div.an-custom-field-tab {}
 }
 
 /* Help Popup */
-#an-help-popup {
-	width: 580px;
-}
 #an-help-popup p {
 	font-size: 12px;
 }
