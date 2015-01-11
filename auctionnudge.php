@@ -3,7 +3,7 @@
 Plugin Name: Auction Nudge
 Plugin URI: https://www.auctionnudge.com/wordpress-plugin
 Description: This plugin enables you to embed your live eBay information on your WordPress site using Auction Nudge. An options box will be added to the edit page/post screen below the content editor. <a href="options-general.php?page=an_options_page">Settings page</a>.
-Version: 4.0
+Version: 4.0.1
 Author: Joseph Hawes
 Author URI: http://www.josephhawes.co.uk/
 License: GPL2
@@ -29,7 +29,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //Settings
 $an_plugin_settings = array(
 	'plugin_name' => 'Auction Nudge',
-	'plugin_version' => '4.0',
+	'plugin_version' => '4.0.1',
 	'custom_field_prefix' => 'an',
 	'shortcode' => 'auction-nudge',
 	'request_item_endpoint' => '//www.auctionnudge.com/item_build/js/',
@@ -944,7 +944,7 @@ function an_create_custom_field_input($field, $count = false, $set_value = false
 				if($set_value == $value) {
 					$out .= ' selected="selected"';
 				//Do we have a default?
-				}	elseif($set_value == false && ($field['default'] && $field['default'] == $value)) {
+				}	elseif($set_value === false && ($field['default'] && $field['default'] == $value)) {
 					$out .= ' selected="selected"';				
 				}		
 				$out .= '>' . $description . '</option>' . "\n";

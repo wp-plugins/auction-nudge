@@ -3,7 +3,7 @@ Contributors: morehawes
 Tags: Auction Nudge, auctionnudge.com, eBay, plugin, widget, widgets, embed, sidebar, integrate, integration, listings, item, items, pagination, profile, feedback, free, products, ad, ads, adverts, banner, banners, shop, store, advertise, advertising, on your own site, automatic, automatically, update, category, keywords, seller, user, username, links, images, pictures, international, US, UK, Canada, Australia, Belgium, Germany, France, Spain, Austria, Italy, Netherlands, Ireland, Switzerland, ebay.com, ebay.co.uk, ebay.ca, ebay.com.au, ebay.be, ebay.de, ebay.fr, ebay.at, ebay.it, ebay.nl, ebay.ie, ebay.pl, ebay.es, ebay.ch
 Requires at least: 2.8
 Tested up to: 4.1
-Stable tag: 4.0
+Stable tag: 4.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -224,6 +224,10 @@ If you still require assistance, please feel free to <a target="_blank" href="ht
 
 == Changelog ==
 
+= 4.0.1 = 
+
+Fixed bug with setting the eBay site. Thanks to legacy_dzynes for bringing this to my attention on the support forum.
+
 = 4.0 =
 * **Pagination** – there is no longer a limit to the total number of items Auction Nudge can display using the Your eBay Listings tool. Each page can show up to 100 items at once, if you have more listed "Previous" and "Next" buttons will allow users to navigate through multiple pages. Use the "Show multiple pages?" option to enable this feature
 * **Larger images** – Your eBay Listings item image sizes can now be increased up to 500px x 500px using the "Image Size" option (the previous maximum was 140px x 140px)
@@ -262,6 +266,10 @@ Added the ability to specify custom CSS rules within the plugin to modify the ap
 WordPress plugin released.
 
 == Upgrade Notice ==
+
+= 4.0.1 = 
+
+Fixed bug with setting the eBay site. This bug fix is recommended for all users.
 
 = 4.0 =
 A major update with lots of new features: faster feed updates, multiple pages of items, larger item images and more
