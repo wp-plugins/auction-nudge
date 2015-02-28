@@ -2,8 +2,8 @@
 /*
 Plugin Name: Auction Nudge
 Plugin URI: https://www.auctionnudge.com/wordpress-plugin
-Description: This plugin enables you to embed your live eBay information on your WordPress site using Auction Nudge. An options box will be added to the edit page/post screen below the content editor. <a href="options-general.php?page=an_options_page">Settings page</a>.
-Version: 4.0.1
+Description: This plugin enables you to embed your live eBay information on your WordPress site using Auction Nudge. <strong>An options box will be added to the edit page/post screen below the content editor</strong>. If you like the plugin, please show your appreciation by <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/auction-nudge?rate=5#postform">leaving a rating</a>. Go to the <a href="options-general.php?page=an_options_page">Settings page</a>.
+Version: 4.0.2
 Author: Joseph Hawes
 Author URI: http://www.josephhawes.co.uk/
 License: GPL2
@@ -29,7 +29,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //Settings
 $an_plugin_settings = array(
 	'plugin_name' => 'Auction Nudge',
-	'plugin_version' => '4.0.1',
+	'plugin_version' => '4.0.2',
 	'custom_field_prefix' => 'an',
 	'shortcode' => 'auction-nudge',
 	'request_item_endpoint' => '//www.auctionnudge.com/item_build/js/',
@@ -778,8 +778,8 @@ function an_create_custom_field_form() {
 	//Item tool
 	echo '<div id="listings-tab" class="an-custom-field-tab">' . "\n";			
 	echo '	<div class="an-custom-field-help">' . "\n";
-	echo '		<p>Use these options to specify which of your eBay items to display within your page/post.<br /><br />Add the following shortcode within your content editor to specify where the items will appear:<br /><br />[' . $an_plugin_settings['shortcode'] . ' tool="listings"]<br /><br /><small><b>Note:</b> Only one set of eBay listings can be loaded per page.</small><br /></p>' . "\n";
-	echo '		<br /><a class="button thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Plugin Help</a> <a class="button" target="_blank" href="https://www.youtube.com/watch?v=smamgdwCD74">Video Tutorial</a>' . "\n";
+	echo '		<p>Use these options to specify which of your eBay items to display within your page/post.</p><p>Add the following shortcode within your content editor to specify where the items will appear:</p><p>[' . $an_plugin_settings['shortcode'] . ' tool="listings"]</p><p><small><b>Note:</b> Only one set of eBay listings can be loaded per page.</small></p>' . "\n";
+	echo '		<a class="button thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Quick Help</a> <a class="button" target="_blank" href="https://www.youtube.com/watch?v=smamgdwCD74">Video Tutorial</a>' . "\n";
 	echo '	</div>' . "\n";
 	echo '	<h2>Your eBay Listings</h2>' . "\n";						
 	$current_group = false;
@@ -824,8 +824,8 @@ function an_create_custom_field_form() {
 	//Ad tool
 	echo '<div id="ads-tab" class="an-custom-field-tab" style="display:none">' . "\n";			
 	echo '	<div class="an-custom-field-help">' . "\n";
-	echo '		<p>Use these options to specify the type of ad to display within your page/post.<br /><br />Add the following shortcode within your content editor to specify where the ad will appear:<br /><br />[' . $an_plugin_settings['shortcode'] . ' tool="ads"]<br /><br /><small><b>Note:</b> Only one type of eBay ad can be loaded within each content area.</small><br /></p>' . "\n";
-	echo '		<br /><a class="button thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Plugin Help</a> <a class="button" target="_blank" href="https://www.youtube.com/watch?v=smamgdwCD74">Video Tutorial</a>' . "\n";
+	echo '		<p>Use these options to specify the type of ad to display within your page/post.</p><p>Add the following shortcode within your content editor to specify where the ad will appear:</p><p>[' . $an_plugin_settings['shortcode'] . ' tool="ads"]</p><p><small><b>Note:</b> Only one type of eBay ad can be loaded within each content area.</small></p>' . "\n";
+	echo '		<a class="button thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Quick Help</a> <a class="button" target="_blank" href="https://www.youtube.com/watch?v=smamgdwCD74">Video Tutorial</a>' . "\n";
 	echo '	</div>' . "\n";
 	echo '	<h2>Your eBay Ads</h2>' . "\n";						
 	$current_group = false;
@@ -856,8 +856,8 @@ function an_create_custom_field_form() {
 	//Profile tool
 	echo '<div id="profile-tab" class="an-custom-field-tab" style="display:none">' . "\n";				
 	echo '	<div class="an-custom-field-help">' . "\n";
-	echo '		<p>Use these options to specify how your eBay profile will appear within your page/post.<br /><br />Add the following shortcode within your content editor to specify where the items will appear:<br /><br />[' . $an_plugin_settings['shortcode'] . ' tool="profile"]<br /><br /><small><b>Note:</b> Only one profile can be loaded per page.</small><br /></p>' . "\n";
-	echo '		<br /><a class="button thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Plugin Help</a> <a class="button" target="_blank" href="https://www.youtube.com/watch?v=smamgdwCD74">Video Tutorial</a>' . "\n";
+	echo '		<p>Use these options to specify how your eBay profile will appear within your page/post.</p><p>Add the following shortcode within your content editor to specify where the items will appear:</p><p>[' . $an_plugin_settings['shortcode'] . ' tool="profile"]</p><p><small><b>Note:</b> Only one profile can be loaded per page.</small></p>' . "\n";
+	echo '		<a class="button thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Quick Help</a> <a class="button" target="_blank" href="https://www.youtube.com/watch?v=smamgdwCD74">Video Tutorial</a>' . "\n";
 	echo '	</div>' . "\n";
 	echo '	<h2>Your eBay Profile</h2>' . "\n";						
 	$count = 0;
@@ -871,8 +871,8 @@ function an_create_custom_field_form() {
 	//Feedback tool
 	echo '<div id="feedback-tab" class="an-custom-field-tab" style="display:none">' . "\n";			
 	echo '	<div class="an-custom-field-help">' . "\n";
-	echo '		<p>Use these options to specify how your eBay feedback will appear within your page/post.<br /><br />Add the following shortcode within your content editor to specify where the items will appear:<br /><br />[' . $an_plugin_settings['shortcode'] . ' tool="feedback"]<br /><br /><small><b>Note:</b> Only one set of feedback can be loaded per page.</small><br /></p>' . "\n";
-	echo '		<br /><a class="button thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Plugin Help</a> <a class="button" target="_blank" href="https://www.youtube.com/watch?v=smamgdwCD74">Video Tutorial</a>' . "\n";
+	echo '		<p>Use these options to specify how your eBay feedback will appear within your page/post.</p><p>Add the following shortcode within your content editor to specify where the items will appear:</p><p>[' . $an_plugin_settings['shortcode'] . ' tool="feedback"]</p><p><small><b>Note:</b> Only one set of feedback can be loaded per page.</small></p>' . "\n";
+	echo '		<a class="button thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Quick Help</a> <a class="button" target="_blank" href="https://www.youtube.com/watch?v=smamgdwCD74">Video Tutorial</a>' . "\n";
 	echo '	</div>' . "\n";
 	echo '	<h2>Your eBay Feedback</h2>' . "\n";						
 	$count = 0;
@@ -1060,8 +1060,21 @@ function an_options_page() {
 	global $an_plugin_settings;
 
 	echo '<div id="an-options-container">' . "\n";
-	echo '<a class="button right" style="margin-left:5px" target="_blank" href="https://www.youtube.com/watch?v=smamgdwCD74">Video Tutorial</a>' . "\n";
-	echo '<a class="button right thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Plugin Help</a>' . "\n";
+
+	echo '	<a class="button right" style="margin-left:5px" target="_blank" href="https://www.youtube.com/watch?v=smamgdwCD74">Video Tutorial</a>' . "\n";
+	echo '	<a class="button right thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Quick Help</a>' . "\n";
+
+	echo '	<div id="an-about">' . "\n";	
+	echo '		<img width="60" height="60" src="http://www.josephhawes.co.uk/assets/images/Joe1BW.jpg" />' . "\n";		
+	echo '		<p><b>Hi, I\'m Joe and I created this plugin.</b></p>' . "\n";		
+	echo '		<p>Any problems and reading through <a target="_blank" href="https://www.auctionnudge.com/help">this</a> didn\'t help, then please do <a target="_blank" href="https://www.auctionnudge.com/contact">get in touch</a>. You will <b>always</b> get a prompt response from me.</p>' . "\n";	
+	echo '		<p>If you like the plugin, please show your appreciation by <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/auction-nudge?rate=5#postform">leaving a rating</a>. It really does help.</p>' . "\n";		
+	echo '		<p><b>Thanks!</b></p>' . "\n";		
+	echo '		<a class="button" target="_blank" href="https://www.auctionnudge.com/help">Read the Help page</a>' . "\n";
+	echo '		<a class="button" target="_blank" href="https://www.auctionnudge.com/contact">Ask a question</a>' . "\n";
+	echo '		<a class="button button-primary" target="_blank" href="https://wordpress.org/support/view/plugin-reviews/auction-nudge?rate=5#postform">Rate the plugin :)</a>' . "\n";
+	echo '	</div>' . "\n";
+
 	echo '	<h2>' . $an_plugin_settings['plugin_name'] . '</h2>' . "\n";
 	
 	echo '<p>To add Auction Nudge to your pages or posts use the Auction Nudge box on the edit page. You can also add Auction Nudge to your theme as <a href="' . admin_url('widgets.php') . '">Widgets</a>. The Settings below can be used to specify some defaults and style rules, but are not required.</p>' . "\n";
@@ -1120,7 +1133,7 @@ function an_admin_tabs($current = 'general') {
 			$links[] = '<a class="nav-tab" href="?page=an_options_page&tab=' . $slug . '">' . $name . '</a>';
 		}
   }
-  echo '<h2>';
+  echo '<h2 class="nav-tab-wrapper">';
   foreach($links as $link) {
 		echo $link; 
   }      
