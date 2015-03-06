@@ -3,7 +3,7 @@ Contributors: morehawes
 Tags: Auction Nudge, auctionnudge.com, eBay, plugin, widget, widgets, embed, sidebar, integrate, integration, listings, item, items, pagination, profile, feedback, free, products, ad, ads, adverts, banner, banners, shop, store, advertise, advertising, on your own site, automatic, automatically, update, category, keywords, seller, user, username, links, images, pictures, international, US, UK, Canada, Australia, Belgium, Germany, France, Spain, Austria, Italy, Netherlands, Ireland, Switzerland, ebay.com, ebay.co.uk, ebay.ca, ebay.com.au, ebay.be, ebay.de, ebay.fr, ebay.at, ebay.it, ebay.nl, ebay.ie, ebay.pl, ebay.es, ebay.ch
 Requires at least: 2.8
 Tested up to: 4.1
-Stable tag: 4.0.2
+Stable tag: 4.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -229,6 +229,10 @@ If you still require assistance, please feel free to <a target="_blank" href="ht
 9. The Within Your Theme settings page, allowing you to use the plugin from within your theme
 
 == Changelog ==
+
+= 4.0.3 = 
+
+Fixed minor WordPress admin JavaScript bug which was causing conflicts with some other plugins. Thanks to Tamara for bringing this to my attention.
 
 = 4.0.2 = 
 

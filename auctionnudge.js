@@ -77,10 +77,12 @@ jQuery(document).ready(function() {
 
 jQuery(document).ajaxSuccess(function(e, xhr, settings) {
 	var widget_ids = ['an_listings_widget', 'an_ads_widget'];
-	for(i in widget_ids) {
-		if(settings.data.search('action=save-widget') != -1 && settings.data.search('id_base=' + widget_ids[i]) != -1) {
-			setup_parameter_groups();
-			setup_widget_theme_dropdown();	
+	if(typeof settings.data !== 'undefined') {
+		for(i in widget_ids) {
+			if(settings.data.search('action=save-widget') != -1 && settings.data.search('id_base=' + widget_ids[i]) != -1) {
+				setup_parameter_groups();
+				setup_widget_theme_dropdown();	
+			}		
 		}		
 	}
 });
