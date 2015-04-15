@@ -90,5 +90,5 @@ div#auction-nudge-items table.columns tr.alt {
 		<li>Read through the <a target="_blank" href="https://www.auctionnudge.com/customize">Customize page</a></li>	
 	</ul>
 	
-	<p>If you still require assistance, please feel free to <a target="_blank" href="https://www.auctionnudge.com/contact">get in touch</a>. Be sure to include a link to your site where you have the plugin installed so I can investigate further.</p>
+	<p>If you need to report an error or bug, you can do so <a target="_blank" href="https://www.auctionnudge.com/contact">here</a>.</p>
 </div>	

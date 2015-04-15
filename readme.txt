@@ -3,11 +3,11 @@ Contributors: morehawes
 Tags: Auction Nudge, auctionnudge.com, eBay, plugin, widget, widgets, embed, sidebar, integrate, integration, listings, item, items, pagination, profile, feedback, free, products, ad, ads, adverts, banner, banners, shop, store, advertise, advertising, on your own site, automatic, automatically, update, category, keywords, seller, user, username, links, images, pictures, international, US, UK, Canada, Australia, Belgium, Germany, France, Spain, Austria, Italy, Netherlands, Ireland, Switzerland, ebay.com, ebay.co.uk, ebay.ca, ebay.com.au, ebay.be, ebay.de, ebay.fr, ebay.at, ebay.it, ebay.nl, ebay.ie, ebay.pl, ebay.es, ebay.ch
 Requires at least: 2.8
 Tested up to: 4.1
-Stable tag: 4.1
+Stable tag: 4.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin enables you to embed your live eBay information on your WordPress site using Auction Nudge.
+Embed your live eBay listings, profile and feedback information on your site in just a few clicks.
 
 == Description ==
 
@@ -20,7 +20,7 @@ This plugin enables you to embed your live eBay information on your WordPress si
 
 This plugin allows you to add Auction Nudge within your posts and pages using shortcodes, as widgets or directly from within your theme.
 
-**Any problems and reading through <a target="_blank" href="https://www.auctionnudge.com/help">this</a> didn't help, then please do <a target="_blank" href="https://www.auctionnudge.com/contact">get in touch</a>. You will always get a prompt response from me. If you like the plugin, please show your appreciation by <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/auction-nudge?rate=5#postform">leaving a rating</a>. It really does help.**
+**Most common issues are solved by reading the <a target="_blank" href="https://www.auctionnudge.com/help">Help</a> page. Bugs and errors can be reported <a target="_blank" href="https://www.auctionnudge.com/contact">here</a>. Please do this before leaving a poor review.**
 
 Available for the following international eBay sites:
 
@@ -42,7 +42,7 @@ The following options are available for the Your eBay Listings tool:
 
 = Feed options =
 
-* Enter your eBay username
+* eBay username
 * eBay user ID
 * eBay site
 
@@ -71,7 +71,7 @@ The following options are available for the Your eBay Listings tool:
 
 == Installation ==
 
-**Any problems and reading through <a target="_blank" href="https://www.auctionnudge.com/help">this</a> didn't help, then please do <a target="_blank" href="https://www.auctionnudge.com/contact">get in touch</a>. You will always get a prompt response from me.**
+**Most common issues are solved by reading the <a target="_blank" href="https://www.auctionnudge.com/help">Help</a> page. Bugs and errors can be reported <a target="_blank" href="https://www.auctionnudge.com/contact">here</a>. Please do this before leaving a poor review.**
 
 [youtube https://www.youtube.com/watch?v=smamgdwCD74]
 
@@ -120,7 +120,7 @@ Multiple <a target="_blank" href="https://www.auctionnudge.com/your-ebay-ads">Yo
 
 == Frequently Asked Questions ==
 
-**Any problems and reading through <a target="_blank" href="https://www.auctionnudge.com/help">this</a> didn't help, then please do <a target="_blank" href="https://www.auctionnudge.com/contact">get in touch</a>. You will always get a prompt response from me.**
+**Most common issues are solved by reading the <a target="_blank" href="https://www.auctionnudge.com/help">Help</a> page. Bugs and errors can be reported <a target="_blank" href="https://www.auctionnudge.com/contact">here</a>. Please do this before leaving a poor review.**
 
 You can also <a href="https://wordpress.org/plugins/auction-nudge/installation/">watch the plugin tutorial</a>.
 
@@ -198,7 +198,7 @@ A common reason for Auction Nudge not loading is the use of ad blocking browser 
 
 Another reason for Auction Nudge failing to load on your page is Javascript errors from other scripts. You can check for these in your browser's error console.
 
-If this doesn't resolve your issue, then please <a target="_blank" href="https://www.auctionnudge.com/contact">get in touch</a> and be sure to include a link to your site where you have the plugin installed so I can investigate further.
+You can report errors or bugs <a target="_blank" href="https://www.auctionnudge.com/contact">here</a>.
 
 = How is such an awesome tool free? =
 
@@ -214,8 +214,6 @@ The following links should help with most questions and issues:
 * Read through the <a target="_blank" href="https://www.auctionnudge.com/help">Help/FAQ page</a>
 * Read through the <a target="_blank" href="https://www.auctionnudge.com/customize">Customize page</a>
 
-If you still require assistance, please feel free to <a target="_blank" href="https://www.auctionnudge.com/contact">get in touch</a>. Be sure to include a link to your site where you have the plugin installed so I can investigate further.
-
 == Screenshots ==
 
 1. Once installed on your site, Auction Nudge will display your active eBay information and will update automatically
@@ -229,6 +227,10 @@ If you still require assistance, please feel free to <a target="_blank" href="ht
 9. The Within Your Theme settings page, allowing you to use the plugin from within your theme
 
 == Changelog ==
+
+= 4.1.1 =
+
+Minor text updates
 
 = 4.1 =
 

@@ -3,7 +3,7 @@
 Plugin Name: Auction Nudge
 Plugin URI: https://www.auctionnudge.com/wordpress-plugin
 Description: This plugin enables you to embed your live eBay information on your WordPress site using Auction Nudge. <strong>An options box will be added to the edit page/post screen below the content editor</strong>. If you like the plugin, please show your appreciation by <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/auction-nudge?rate=5#postform">leaving a rating</a>. Go to the <a href="options-general.php?page=an_options_page">Settings page</a>.
-Version: 4.1
+Version: 4.1.1
 Author: Joseph Hawes
 Author URI: http://www.josephhawes.co.uk/
 License: GPL2
@@ -29,7 +29,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //Settings
 $an_plugin_settings = array(
 	'plugin_name' => 'Auction Nudge',
-	'plugin_version' => '4.1',
+	'plugin_version' => '4.1.1',
 	'custom_field_prefix' => 'an',
 	'shortcode' => 'auction-nudge',
 	'request_item_endpoint' => '//www.auctionnudge.com/item_build/js/',
@@ -1062,17 +1062,16 @@ function an_options_page() {
 
 	echo '<div id="an-options-container">' . "\n";
 
-	echo '	<a class="button right" style="margin-left:5px" target="_blank" href="https://www.youtube.com/watch?v=smamgdwCD74">Video Tutorial</a>' . "\n";
 	echo '	<a class="button right thickbox" href="#TB_inline?width=600&height=550&inlineId=an-help-popup">Quick Help</a>' . "\n";
 
 	echo '	<div id="an-about">' . "\n";	
 	echo '		<img width="60" height="60" src="http://www.josephhawes.co.uk/assets/images/Joe1BW.jpg" />' . "\n";		
 	echo '		<p><b>Hi, I\'m Joe and I created this plugin.</b></p>' . "\n";		
-	echo '		<p>Any problems and reading through <a target="_blank" href="https://www.auctionnudge.com/help">this</a> didn\'t help, then please do <a target="_blank" href="https://www.auctionnudge.com/contact">get in touch</a>. You will <b>always</b> get a prompt response from me.</p>' . "\n";	
+	echo '		<p>Most common issues are solved by reading the <a target="_blank" href="https://www.auctionnudge.com/help">Help</a> page. Bugs and errors can be reported <a target="_blank" href="https://www.auctionnudge.com/contact">here</a>. Please do this before leaving a poor review.</p>' . "\n";	
 	echo '		<p>If you like the plugin, please show your appreciation by <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/auction-nudge?rate=5#postform">leaving a rating</a>. It really does help.</p>' . "\n";		
 	echo '		<p><b>Thanks!</b></p>' . "\n";		
+	echo '		<a class="button" target="_blank" href="https://www.youtube.com/watch?v=smamgdwCD74">Watch the tutorial</a>' . "\n";
 	echo '		<a class="button" target="_blank" href="https://www.auctionnudge.com/help">Read the Help page</a>' . "\n";
-	echo '		<a class="button" target="_blank" href="https://www.auctionnudge.com/contact">Ask a question</a>' . "\n";
 	echo '		<a class="button button-primary" target="_blank" href="https://wordpress.org/support/view/plugin-reviews/auction-nudge?rate=5#postform">Rate the plugin :)</a>' . "\n";
 	echo '	</div>' . "\n";
 
