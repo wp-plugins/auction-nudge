@@ -3,7 +3,7 @@ Contributors: morehawes
 Tags: Auction Nudge, auctionnudge.com, eBay, plugin, widget, widgets, embed, sidebar, integrate, integration, listings, item, items, pagination, profile, feedback, free, products, ad, ads, adverts, banner, banners, shop, store, advertise, advertising, on your own site, automatic, automatically, update, category, keywords, seller, user, username, links, images, pictures, international, US, UK, Canada, Australia, Belgium, Germany, France, Spain, Austria, Italy, Netherlands, Ireland, Switzerland, ebay.com, ebay.co.uk, ebay.ca, ebay.com.au, ebay.be, ebay.de, ebay.fr, ebay.at, ebay.it, ebay.nl, ebay.ie, ebay.pl, ebay.es, ebay.ch
 Requires at least: 2.8
 Tested up to: 4.1
-Stable tag: 4.1.1
+Stable tag: 4.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -118,11 +118,21 @@ To use this feature, generate your code snippets from the <a target="_blank" hre
 
 Multiple <a target="_blank" href="https://www.auctionnudge.com/your-ebay-ads">Your eBay Ads</a> code snippets can be generated on the Auction Nudge website and pasted directly into your theme files.
 
+= Nothing displaying? =
+
+A common reason for Auction Nudge not loading is the use of ad blocking browser plugins (like Adblock Plus). If you are using such a plugin, disable it, or add an exception to see if Auction Nudge loads without it.
+
 == Frequently Asked Questions ==
 
 **Most common issues are solved by reading the <a target="_blank" href="https://www.auctionnudge.com/help">Help</a> page. Bugs and errors can be reported <a target="_blank" href="https://www.auctionnudge.com/contact">here</a>. Please do this before leaving a poor review.**
 
-You can also <a href="https://wordpress.org/plugins/auction-nudge/installation/">watch the plugin tutorial</a>.
+You can also <a href="https://wordpress.org/plugins/auction-nudge/installation/">watch the plugin tutorial</a> to ensure you have the plugin set up correctly.
+
+= Auction Nudge isn't loading, what's wrong? =
+
+A common reason for Auction Nudge not loading is the use of ad blocking browser plugins (like Adblock Plus). If you are using such a plugin, disable it, or add an exception to see if Auction Nudge loads without it.
+
+Another reason for Auction Nudge failing to load on your page is Javascript errors from other scripts. You can check for these in your browser's error console.
 
 = How do I add Auction Nudge to my pages / posts? =
 
@@ -192,14 +202,6 @@ To reduce server load, Auction Nudge does not update every time it is loaded on 
 * Your eBay Profile – updates every 6 hours
 * Your eBay Feedback – updates every 6 hours
 
-= Auction Nudge isn't loading, what's wrong? =
-
-A common reason for Auction Nudge not loading is the use of ad blocking browser plugins. If you are using such a plugin, disable it, or add an exception to see if Auction Nudge loads without it.
-
-Another reason for Auction Nudge failing to load on your page is Javascript errors from other scripts. You can check for these in your browser's error console.
-
-You can report errors or bugs <a target="_blank" href="https://www.auctionnudge.com/contact">here</a>.
-
 = How is such an awesome tool free? =
 
 Auction Nudge funds itself through referral commissions from eBay. As a member of the eBay Partner Network we may receive anonymous commissions from eBay if a successful transaction occurs after clicking an Auction Nudge link to eBay, at no cost to the user.
@@ -227,6 +229,10 @@ The following links should help with most questions and issues:
 9. The Within Your Theme settings page, allowing you to use the plugin from within your theme
 
 == Changelog ==
+
+= 4.1.2 =
+
+Minor text updates
 
 = 4.1.1 =
 
